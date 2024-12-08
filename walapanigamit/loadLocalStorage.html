@@ -6,83 +6,87 @@
     <title>Load LocalStorage</title>
 </head>
 <body>
-    <button style="width: 350px; height: 50px;" id="saveBtn">Load Key-Value LocalStorage</button>
+    <button style="width: 350px; height: 50px;" id="deleteBtn">Delete Election Local Storage</button>
+    <h1>Reload this page to load again.</h1>
 
     <script>
-        document.getElementById('saveBtn').addEventListener('click', () => {
-            const elections = {
-                "SSG Council Election": {
-                    "startDate": "2024-12-05",
-                    "endDate": "2024-12-16",
-                    "candidates": [
-                        {
-                            "name": "harold",
-                            "position": "President",
-                            "image": "Images/coe.jpg",
-                            "gender": "Male",
-                            "partylist": "1",
-                            "description": "ambot",
-                            "votes": 1
-                        },
-                        {
-                            "name": "kenjie",
-                            "position": "President",
-                            "image": "Images/ES.png",
-                            "gender": "Male",
-                            "partylist": "2",
-                            "votes": 0,
-                            "description": "ambot"
-                        },
-                        {
-                            "name": "khitsly",
-                            "position": "Vice President",
-                            "image": "Images/ICPEP.png",
-                            "gender": "Male",
-                            "partylist": "1",
-                            "description": "ambot",
-                            "votes": 1
-                        },
-                        {
-                            "name": "bryan",
-                            "position": "Vice President",
-                            "image": "Images/SSG.png",
-                            "gender": "Male",
-                            "partylist": "2",
-                            "votes": 0,
-                            "description": "samana oi"
-                        }
-                    ],
-                    "logo": "Images/SSG.png"
-                },
-                "Engineering Society Election": {
-                    "startDate": "2024-12-05",
-                    "endDate": "2024-12-20",
-                    "candidates": [],
-                    "logo": "Images/ES.png"
-                },
-                "ICPEP Election": {
-                    "startDate": "2025-01-02",
-                    "endDate": "2025-01-11",
-                    "candidates": [],
-                    "logo": "Images/ICPEP.png"
-                },
-                "bscpe2": {
-                    "startDate": "2024-12-26",
-                    "endDate": "2025-01-18",
-                    "candidates": [],
-                    "logo": "Images/ICPEP.png"
-                },
-                "bulldogan": {
-                    "startDate": "2025-01-16",
-                    "endDate": "2025-01-25",
-                    "candidates": [],
-                    "logo": "Images/ES.png"
-                }
-            };
+        const elections = {
+            "SSG Council Election": {
+                "startDate": "2024-12-05",
+                "endDate": "2024-12-16",
+                "candidates": [
+                    {
+                        "name": "harold",
+                        "position": "President",
+                        "image": "Images/coe.jpg",
+                        "gender": "Male",
+                        "partylist": "1",
+                        "description": "ambot",
+                        "votes": 1
+                    },
+                    {
+                        "name": "kenjie",
+                        "position": "President",
+                        "image": "Images/ES.png",
+                        "gender": "Male",
+                        "partylist": "2",
+                        "votes": 0,
+                        "description": "ambot"
+                    },
+                    {
+                        "name": "khitsly",
+                        "position": "Vice President",
+                        "image": "Images/ICPEP.png",
+                        "gender": "Male",
+                        "partylist": "1",
+                        "description": "ambot",
+                        "votes": 1
+                    },
+                    {
+                        "name": "bryan",
+                        "position": "Vice President",
+                        "image": "Images/SSG.png",
+                        "gender": "Male",
+                        "partylist": "2",
+                        "votes": 0,
+                        "description": "samana oi"
+                    }
+                ],
+                "logo": "Images/SSG.png"
+            },
+            "Engineering Society Election": {
+                "startDate": "2024-12-05",
+                "endDate": "2024-12-20",
+                "candidates": [],
+                "logo": "Images/ES.png"
+            },
+            "ICPEP Election": {
+                "startDate": "2025-01-02",
+                "endDate": "2025-01-11",
+                "candidates": [],
+                "logo": "Images/ICPEP.png"
+            },
+            "bscpe2": {
+                "startDate": "2024-12-26",
+                "endDate": "2025-01-18",
+                "candidates": [],
+                "logo": "Images/ICPEP.png"
+            },
+            "bulldogan": {
+                "startDate": "2025-01-16",
+                "endDate": "2025-01-25",
+                "candidates": [],
+                "logo": "Images/ES.png"
+            }
+        };
 
-            // Save the object as a JSON string in localStorage
-            localStorage.setItem('Election', JSON.stringify(elections));
-            alert('This local storage has been loaded');
+        // Save the object as a JSON string in localStorage
+        localStorage.setItem('Election', JSON.stringify(elections));
+        alert('This local storage has been automatically loaded.');
+
+        document.getElementById('deleteBtn').addEventListener('click', () => {
+            localStorage.removeItem("Election");
+            alert('This local storage key "Election" has been deleted.');
         });
     </script>
 </body>
