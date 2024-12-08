@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Voting System</title>
+    <style>
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        #voteForm {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        button {
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        .chart-container {
+            display: none;
+            margin-top: 20px;
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>Vote for Your Favorite Candidate</h1>
+        <form id="voteForm">
+            <label>
+                <input type="radio" name="candidate" value="Candidate A" required> Candidate A
+            </label>
+            <label>
+                <input type="radio" name="candidate" value="Candidate B"> Candidate B
+            </label>
+            <label>
+                <input type="radio" name="candidate" value="Candidate C"> Candidate C
+            </label>
+            <button type="submit">Submit Vote</button>
+        </form>
+
+        <div class="chart-container" id="resultsContainer">
+            <h2>Voting Results</h2>
+            <canvas id="barChart"></canvas>
+            <canvas id="pieChart"></canvas>
+        </div>
+    </div>
+
+    <script>
+        const votes = {
+            'Candidate A': 0,
+            'Candidate B': 0,
+            'Candidate C': 0
+        };
+
+        document.getElementById('voteForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            const selectedCandidate = document.querySelector('input[name="candidate"]:checked').value;
+            votes[selectedCandidate] += 1;
+
+            // Display the graphs
+            displayResults();
+        });
+
+        function displayResults() {
+            document.getElementById('resultsContainer').style.display = 'block';
+
+            const voteCounts = Object.values(votes);
+            const voteLabels = Object.keys(votes);
+
+            // Bar chart
+            const barCtx = document.getElementById('barChart').getContext('2d');
+            new Chart(barCtx, {
+                type: 'bar',
+                data: {
+                    labels: voteLabels,
+                    datasets: [{
+                        label: 'Votes',
+                        data: voteCounts,
+                        backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56'],
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+
+            // Pie chart
+            const pieCtx = document.getElementById('pieChart').getContext('2d');
+            new Chart(pieCtx, {
+                type: 'pie',
+                data: {
+                    labels: voteLabels,
+                    datasets: [{
+                        data: voteCounts,
+                        backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56'],
+                    }]
+                }
+            });
+        }
+    </script>
+</body>
+</html>

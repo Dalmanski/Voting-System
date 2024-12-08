@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2024 Elections Voting System</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="container">
+        <!-- Left-side Navbar -->
+        <div class="navbar">
+            <div class="logo-container">
+                <img src="ctu_logo.png" alt="CTU Logo">
+                <h3>2024 ELECTIONS</h3>
+            </div>
+            <div class="nav-items">
+                <div class="nav-item active" id="overview">Overview</div>
+                <div class="nav-item" id="settings">Settings</div>
+                <div class="nav-item" id="results">Results</div>
+                <div class="nav-item" id="ballots">Ballots</div>
+                <div class="nav-item" id="votes">Votes</div>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Voting Results (Bar and Pie Chart) -->
+            <div class="chart-container" id="resultsContainer">
+                <h2>Voting Results</h2>
+                <div class="chart-wrapper">
+                    <canvas id="barChart"></canvas>
+                    <div class="pie-container"> <!-- New container for the pie chart and total votes -->
+                        <h3 id="totalVotes" style="text-align: center;"></h3>
+                        <canvas id="pieChart"></canvas>
+                    </div>
+                </div>
+                
+                
+                <div id="topCandidates">
+                    <h3>Top 2 Candidates</h3>
+                    <p id="firstPlace">First Place: </p>
+                    <p id="secondPlace">Second Place: </p>
+                </div>
+            </div>
+
+            <!-- Voting Form -->
+            <div id="votingFormContainer">
+                <h2>Vote for Your Candidate</h2>
+                <form id="voteForm">
+                    <label>
+                        <input type="radio" name="candidate" value="Candidate A" required> Candidate A
+                    </label>
+                    <label>
+                        <input type="radio" name="candidate" value="Candidate B" required> Candidate B
+                    </label>
+                    <label>
+                        <input type="radio" name="candidate" value="Candidate C" required> Candidate C
+                    </label>
+                    <button type="submit">Submit Vote</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

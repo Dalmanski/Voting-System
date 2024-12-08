@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SSG Council Election</title>
+    <style>
+        #election-container {
+    max-width: 800px;
+    margin: auto;
+    text-align: center;
+}
+
+#election-details img {
+    display: block;
+    margin: 10px auto;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+li {
+    margin: 20px 0;
+}
+
+p {
+    font-size: 16px;
+    color: #333;
+}
+
+    </style>
+</head>
+<body>
+    <div id="election-container">
+        <h1>SSG Council Election</h1>
+        <div id="election-details"></div>
+    </div>
+
+    <script>
+        // Fetch the "Elections" object from localStorage
+const electionsData = JSON.parse(localStorage.getItem("Election"));
+
+if (electionsData && electionsData["SSG Council Election"]) {
+    const ssgElection = electionsData["SSG Council Election"];
+    const container = document.getElementById("election-details");
+
+    // Add election logo
+    const logo = document.createElement("img");
+    logo.src = ssgElection.logo;
+    logo.alt = "SSG Council Election Logo";
+    container.appendChild(logo);
+
+    // Add election dates
+    const dates = document.createElement("p");
+    dates.textContent = `Election Dates: ${ssgElection.startDate} to ${ssgElection.endDate}`;
+    container.appendChild(dates);
+
+    // Add candidates
+    const candidatesHeader = document.createElement("h2");
+    candidatesHeader.textContent = "Candidates";
+    container.appendChild(candidatesHeader);
+
+    const candidatesList = document.createElement("ul");
+    ssgElection.candidates.forEach(candidate => {
+        const candidateItem = document.createElement("li");
+
+        const candidateImage = document.createElement("img");
+        candidateImage.src = candidate.image;
+        candidateImage.alt = `${candidate.name}'s picture`;
+        candidateImage.style.width = "100px";
+
+        const candidateInfo = document.createElement("p");
+        candidateInfo.innerHTML = `
+            <strong>Name:</strong> ${candidate.name}<br>
+            <strong>Position:</strong> ${candidate.position}<br>
+            <strong>Gender:</strong> ${candidate.gender}<br>
+            <strong>Partylist:</strong> ${candidate.partylist}<br>
+            <strong>Description:</strong> ${candidate.description}
+        `;
+
+        candidateItem.appendChild(candidateImage);
+        candidateItem.appendChild(candidateInfo);
+        candidatesList.appendChild(candidateItem);
+    });
+
+    container.appendChild(candidatesList);
+} else {
+    console.error("SSG Council Election data is missing!");
+}
+
+    </script>
+</body>
+</html>

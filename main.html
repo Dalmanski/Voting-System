@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>College Organization Platform</title>
+    <link rel="icon" href="img/web-icon.png">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="auth-section" class="wrapper">
+        <div id="login-form" class="form-container">
+            <h2>Login</h2>
+            <input type="text" id="login-username" placeholder="Enter username" required>
+            <input type="password" id="login-password" placeholder="Enter password" required>
+            <button onclick="login()">Login</button>
+            <p class="switch-form">Don't have an account? <a href="#" onclick="showRegisterForm()">Sign up</a></p>
+        </div>
+
+        <div id="register-form" class="form-container" style="display: none;">
+            <h2>Register</h2>
+            <input type="text" id="reg-username" placeholder="Enter username" required>
+            <input type="password" id="reg-password" placeholder="Enter password" required>
+            <button onclick="register()">Register</button>
+            <p class="switch-form">Already have an account? <a href="#" onclick="showLoginForm()">Log in</a></p>
+        </div>
+    </div>
+
+    <div id="main-section" style="display: none;">
+        <aside class="sidebar">
+            <div class="sidebar-profile">
+                <img src="img/CTU_new_logo.png" alt="Profile Picture" class="sidebar-profile-pic">
+                <div class="sidebar-user-info">
+                    <h3 id="username">Student Organization</h3>
+                    <p id="userhandle">@org_handle</p>
+                    <p class="user-role">Role: Member</p>
+                </div>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#" onclick="showSection('home-post')">🏠 Home</a></li>
+                    <li><a href="#" onclick="showSection('announcement')">📢 Announcements</a></li>
+                    <li><a href="#" onclick="showSection('events')">📅 Events</a></li>
+                    <li class="dropdown">
+                        <a href="javascript:void(0)" onclick="toggleDropdown()">🗳️ Elections</a>
+                        <div class="dropdown-content">
+                            <a href="#" id="active-elections" onclick="showSection('elections')">Active Elections</a>
+                            <a href="#" id="upcoming-elections" onclick="showSection('elections')">Upcoming Elections</a>
+                            <a href="#" onclick="showSection('manage-elections')">Manage Elections</a>
+                        </div>
+                    </li>
+                    <li><a href="#" onclick="showSection('discussions')">💬 Discussions</a></li>
+                    <li><a href="#" onclick="showSection('resources')">📄 Resources</a></li>
+                </ul>
+            </nav>
+            <button onclick="signOut()">Sign Out</button>
+        </aside>
+
+        <div class="main-content">
+
+            <div id="home-post" class="section">
+                <header>
+                    <h1>College Organization Platform</h1>
+                </header>
+                <main>
+                    <div class="post-creator container">
+                        <textarea id="post-content" placeholder="What's happening?"></textarea>
+                        <button onclick="createPost()">Post</button>
+                    </div>
+                    <div id="timeline" class="container">
+                        <!-- Posts will be dynamically added here -->
+                    </div>
+                </main>
+                <footer>
+                    <p>&copy; 2024 College Organization Platform</p>
+                </footer>
+            </div>
+
+            <div id="announcement" class="section hidden">
+                <h1> Lmao ako ni iframe be, send lng inyung part para mabutang ra diri hahaha</h1>
+            </div>
+
+            <div id="events" class="section hidden">
+                <h1> Lmao ako ni iframe be, send lng inyung part para mabutang ra diri hahaha</h1>
+            </div>
+
+            <div id="elections" class="section hidden">
+                <iframe id="iframeHarold" src="harold.html" width="100%" height="100%"></iframe>
+            </div>
+
+            <div id="manage-elections" class="section hidden">
+                <iframe src="dalman.html" width="100%" height="100%"></iframe>
+            </div>
+
+            <div id="discussions" class="section hidden">
+                <h1> Lmao ako ni iframe be, send lng inyung part para mabutang ra diri hahaha</h1>
+            </div>
+
+            <div id="resources" class="section hidden">
+                <h1> Lmao ako ni iframe be, send lng inyung part para mabutang ra diri hahaha</h1>
+            </div>
+
+        </div>
+    </div>
+
+    <script src="auth.js"></script>
+</body>
+</html>

@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Election Candidates</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f0f4f8;
+            color: #333;
+        }
+
+        /* Main Content */
+        .main-content {
+            padding: 20px;
+            background-color: #f0f4f8;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column; 
+        }
+
+        /* Vote Container */
+        .vote-container {
+            width: 80%;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+            margin-top: 20px; /* Add some space between the header and the vote container */
+        }
+
+        /* Header */
+        header {
+            text-align: center;
+        }
+
+        header h1 {
+            color: #b83232;
+            font-size: 2em;
+            margin-top: 2em;
+            margin-bottom: 0.1em;
+        }
+
+        header p {
+            text-align: center;
+            color: #666;
+            font-size: 1em;
+            margin-top: 0.5em;
+        }
+
+        /* Candidate List */
+        #candidate-list {
+            margin-bottom: 2em;
+        }
+
+        .candidate {
+            display: flex;
+            align-items: center;
+            margin: 1em 0;
+            padding: 0.8em;
+            border-radius: 8px;
+            border: 1px solid #e0e0e0;
+            background-color: #f9f9f9;
+        }
+
+        .candidate label {
+            margin-left: 10px;
+            font-weight: bold;
+            font-size: 1em;
+            color: #333;
+        }
+
+        /* Button Styling */
+        button {
+            margin-top: 1em;
+            padding: 0.8em 1.5em;
+            border: none;
+            border-radius: 8px;
+            background: linear-gradient(45deg, #4a90e2, #1a1a2e);
+            color: #fff;
+            font-weight: bold;
+            cursor: pointer;
+            transition: opacity 0.3s, transform 0.2s;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+        }
+
+        button:hover {
+            opacity: 0.9;
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="main-content">
+        <header>
+            <h1>Election Candidates</h1>
+        </header>
+
+        <div class="vote-container">
+            <div id="candidate-list"></div>
+
+            <div class="button-container">
+                <button id="cast-votes">Cast Votes</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        window.addEventListener('load', () => {
+            // Retrieve the 'Election' data from localStorage
+            const storedData = JSON.parse(localStorage.getItem('Election')) || {};
+
+            // Specify the election you want to load (in this case, "SSG Council Election")
+            const electionKey = 'SSG Council Election'; // Change this to load a different election
+            const election = storedData[electionKey];
+
+            if (!election || !election.candidates) {
+                alert('No election data found!');
+                return;
+            }
+
+            // Get the div where the candidates will be displayed
+            const candidateList = document.getElementById('candidate-list');
+            const positionMap = {};
+
+            // Group candidates by position
+            election.candidates
+                .filter(candidate => candidate !== null) // Filter out null candidates
+                .forEach(candidate => {
+                    if (!positionMap[candidate.position]) {
+                        positionMap[candidate.position] = [];
+                    }
+                    positionMap[candidate.position].push(candidate);
+                });
+
+                let content = '';
+
+            for (let position in positionMap) {
+                content += `<h3>${position}</h3><div class="radio-group">`;
+
+                positionMap[position].forEach(candidate => {
+                    content += `
+                        <div class="candidate">
+                            <input type="radio" name="${position}" value="${candidate.name}">
+                            <label style="margin-left: 10px;">${candidate.name} - Party: ${candidate.partylist}</label>
+                        </div>`;
+                });
+
+                content += `</div>`;
+            }
+
+            candidateList.innerHTML = content;
+
+
+            // Handle the "Cast Votes" button click
+            const castVotesButton = document.getElementById('cast-votes');
+            castVotesButton.addEventListener('click', () => {
+                const selectedVotes = {};
+
+                // Get all selected radio buttons
+                document.querySelectorAll('input[type="radio"]:checked').forEach(radio => {
+                    const position = radio.name;
+                    const candidateName = radio.value;
+                    selectedVotes[position] = candidateName;
+                });
+
+                // Increment the vote count for each selected candidate
+                if (Object.keys(selectedVotes).length === 0) {
+                    alert('Please select at least one candidate.');
+                    return;
+                }
+
+                election.candidates.forEach(candidate => {
+                    if (selectedVotes[candidate.position] === candidate.name) {
+                        candidate.votes = (candidate.votes || 0) + 1; // Increment vote
+                    }
+                });
+
+                // Save the updated election data back to localStorage
+                storedData[electionKey] = election;
+                localStorage.setItem('Election', JSON.stringify(storedData));
+
+                alert('Your votes have been cast successfully!');
+            });
+        });
+    </script>
+
+</body>
+</html>

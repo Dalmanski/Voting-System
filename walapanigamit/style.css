@@ -1,0 +1,145 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; 
+}
+
+body {
+    background: linear-gradient(to bottom, #dec0ff, #3d0052);
+    color: white;
+    text-shadow: 
+        -1px -1px 0px black,
+        1px -1px 0px black,
+        -1px 1px 0px black,
+        1px 1px 0px black;
+}
+
+.container {
+    display: flex;
+    height: 100vh; 
+}
+
+/* Left-side Navbar styling */
+.navbar {
+    width: 300px;
+    background: linear-gradient(to right, #5500af, #3d0052);
+    color: white;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.logo-container {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.logo-container img {
+    width: 60px;
+    height: 60px;
+}
+
+.logo-container h3 {
+    font-size: 18px;
+    margin-top: 10px;
+}
+
+.nav-items {
+    width: 100%;
+}
+
+.nav-item {
+    padding: 15px;
+    cursor: pointer;
+    font-size: 16px;
+    width: 100%;
+    border-radius: 8px;
+    text-align: left;
+    transition: background-color 0.3s ease;
+}
+
+.nav-item:hover, .nav-item.active {
+    background-color: #9700a2;
+}
+
+/* Main Content Styles */
+.main-content {
+    flex-grow: 1;
+    padding: 20px;
+    overflow: hidden; 
+}
+
+.chart-container {
+    margin-top: 20px;
+    display: none; 
+    width: calc(100% - 40px); 
+    height: calc(100% - 40px);
+}
+
+/* Voting Form */
+#votingFormContainer {
+    display: none; 
+}
+
+.chart-wrapper {
+    display: flex;
+    align-items: flex-start;
+    height: 55%; 
+}
+
+#barChart {
+    width: 55%; 
+    margin-right: 10px; 
+    height: 100%; 
+}
+
+.pie-container {
+    display: flex;
+    flex-direction: column; /* Stack items vertically */
+    align-items: center; /* Center align items */
+    width: 35%; /* Ensure this takes 45% of the chart wrapper */
+}
+
+#pieChart {
+    width: 100%; /* Ensure pie chart takes full width of container */
+    height: auto; /* Maintain aspect ratio */
+    max-height: 100%; /* Prevent overflow */
+}
+
+/* Style for the total votes section */
+#totalVotes {
+    font-size: 20px; /* Increase font size if needed */
+    margin: 10px 0; /* Add margin for spacing */
+    text-align: center; /* Center the text */
+}
+
+
+/* Style for the top 2 candidates section */
+#topCandidates {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    height: 20%; 
+    overflow: hidden; 
+}
+
+#topCandidates p {
+    font-size: 16px;
+    margin: 5px 0;
+}
+
+/* Voting Form Styles */
+#voteForm {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+button {
+    padding: 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+}

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Voting Page</title>
+    <link rel="stylesheet" href="harold.css">  
+</head>
+<body>
+
+    <div class="container">
+        <!-- Main Content -->
+        <main class="main-content">
+            <section id="main-elections" class="section">
+                <header>
+                    <h1>College of Engineering Elections 2024-2025</h1>
+                    <p>Participate in active elections or view upcoming ones.</p>
+                </header>
+
+                <!-- Active Elections Section -->
+                <div class="election-list" id="active-elections">
+                    <h2>Active Elections</h2>
+                    
+                </div>
+
+                <!-- Upcoming Elections Section -->
+                <div class="election-list" id="upcoming-elections">
+                    <h2>Upcoming Elections</h2>
+                    
+                </div>
+            </section>
+                
+            <section id="vote-elections" class="section hidden">
+                <button class="back-elections-btn" onclick="showSection('main-elections')">Go back</button>
+                <header>
+                    <h1>Election Candidates</h1>
+                </header>
+        
+                <div class="vote-container">
+                    <div id="candidate-list"></div>
+        
+                    <div class="button-container">
+                        <button id="cast-votes">Cast Votes</button>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+    <script src="harold.js"></script>
+</body>
+</html>
+
